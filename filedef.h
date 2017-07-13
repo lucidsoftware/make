@@ -105,6 +105,7 @@ struct file
 
 extern struct file *default_file;
 
+extern int auto_intermediate;
 
 struct file *lookup_file (const char *name);
 struct file *enter_file (const char *name);

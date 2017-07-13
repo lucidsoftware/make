@@ -62,6 +62,9 @@ static struct hash_table files;
 /* Whether or not .SECONDARY with no prerequisites was given.  */
 static int all_secondary = 0;
 
+/** Whether or not implicit chains are automatically marked as intermediate. */
+int auto_intermediate;
+
 /* Access the hash table of all file records.
    lookup_file  given a name, return the struct file * for that name,
                 or nil if there is none.
@@ -705,6 +708,10 @@ snap_deps (void)
     hash_map (&files, reset_updating);
 
   /* Now manage all the special targets.  */
+
+  auto_intermediate = 1;
+  for (f = lookup_file (".NOTINTERMEDIATE"); f != 0; f = f->prev)
+    auto_intermediate = 0;
 
   for (f = lookup_file (".PRECIOUS"); f != 0; f = f->prev)
     for (d = f->deps; d != 0; d = d->next)

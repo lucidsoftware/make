@@ -2857,6 +2857,18 @@ The targets which @code{.INTERMEDIATE} depends on are treated as
 intermediate files.  @xref{Chained Rules, ,Chains of Implicit Rules}.
 @code{.INTERMEDIATE} with no prerequisites has no effect.
 
+@findex .NOTINTERMEDIATE
+@item .NOTINTERMEDIATE
+@cindex automatic intermediate targets
+
+If @code{.NOTINTERMEDIATE} is mentioned as a target anywhere in the
+makefile, then @code{make} will not automatically treat unmentioned
+files as intermediate files.
+@xref{Chained Rules, ,Chains of Implicit Rules}.
+
+@code{.INTERMEDIATE}
+and @code{.SECONDARY} can still mark files as intermediate.
+
 @findex .SECONDARY
 @item .SECONDARY
 @cindex secondary targets
